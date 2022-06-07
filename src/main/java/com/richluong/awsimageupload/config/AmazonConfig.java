@@ -5,11 +5,18 @@ import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class AmazonConfig {
+
+    @Value("${aws.accessKey}")
+    private String awsAccessKey;
+
+    @Value("${aws.secretKey}")
+    private String awsSecretKey;
 
     /*
     Gives the s3 client to use
@@ -18,8 +25,8 @@ public class AmazonConfig {
     @Bean
     public AmazonS3 s3() {
         AWSCredentials awsCredentials = new BasicAWSCredentials(
-                "AKIAQJ7DE6G6UOPQIJHH",
-                "zstPQgGAwFweg0Qf0ol6xUqUn4DnY8dFB4xXU6cr"
+                awsAccessKey,
+                awsSecretKey
         );
 
         return AmazonS3ClientBuilder
