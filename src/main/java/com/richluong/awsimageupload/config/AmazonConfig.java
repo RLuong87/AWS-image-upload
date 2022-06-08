@@ -21,7 +21,7 @@ public class AmazonConfig {
     /*
     Gives the s3 client to use
     Available to inject and store any files
-     */
+    */
     @Bean
     public AmazonS3 s3() {
         AWSCredentials awsCredentials = new BasicAWSCredentials(
